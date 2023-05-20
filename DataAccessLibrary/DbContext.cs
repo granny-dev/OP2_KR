@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace DataAccessLibrary
 {
-    public class DbContext : IDbContext
+    public class DbContext : IDbContext  //Implements interface
     {
         private readonly IDbConnection connection;
 

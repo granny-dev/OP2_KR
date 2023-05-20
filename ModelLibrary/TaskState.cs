@@ -8,10 +8,10 @@ namespace ModelLibrary
 {
     public enum TaskState
     {
-        Unchanged,
-        Added,
-        Changed,
-        Deleted
+        Unchanged,  // The task is in its original state, without any changes
+        Added,      // The task is newly added and pending further action
+        Changed,    // The task has been modified
+        Deleted     // The task has been marked for deletion
 
     }
 }

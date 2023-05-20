@@ -10,10 +10,10 @@
       <FileName>TaskManagingForm.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
+      <Field Name="db" />
       <Field Name="taskOperations" />
       <Field Name="state" />
       <Field Name="task" />
-      <Field Name="db" />
     </ShowAsAssociation>
   </Class>
   <Class Name="ModelLibrary.Program" Collapsed="true">
@@ -30,14 +30,14 @@
   <Class Name="EmployeeTasksManagingApp.LoginForm" Collapsed="true">
     <Position X="8.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AABAAAAAACAQAAABAACAIAAGIAQQCAAAAAQAAAgAAAA=</HashCode>
+      <HashCode>AABAAAAAACAQAAABAACAIAAGIAQQCAAAAAAAAAgAAAA=</HashCode>
       <FileName>LoginForm.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
+      <Field Name="db" />
       <Field Name="emp" />
       <Field Name="empOperations" />
       <Field Name="taskManagingForm" />
-      <Field Name="db" />
     </ShowAsAssociation>
   </Class>
   <Class Name="ModelLibrary.Employee" Collapsed="true">

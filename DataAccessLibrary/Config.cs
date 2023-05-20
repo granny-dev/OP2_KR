@@ -9,6 +9,9 @@ namespace DataAccessLibrary
 {
     public class Config
     {
+        /// <summary>
+        /// Retrieves the connection string from the configuration file.
+        /// </summary>
         public static string ConnectionString
         {
             get

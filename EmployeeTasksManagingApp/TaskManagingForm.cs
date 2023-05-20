@@ -26,11 +26,12 @@ namespace EmployeeTasksManagingApp
 
         }
 
+        // Form load event handler
         private void Form1_Load(object sender, EventArgs e)
         {
             try
             {
-               
+                // Load all employee tasks into the binding source
                 employeeTaskBindingSource.DataSource = taskOperations.GetAll();
                     task = employeeTaskBindingSource.Current as EmployeeTask;                
             }
@@ -40,23 +41,27 @@ namespace EmployeeTasksManagingApp
             }
         }
 
+        // Add button click event handler
         private void addBtn_Click(object sender, EventArgs e)
         {
             state = TaskState.Added;
             employeeTaskBindingSource.Add(task);
         }
 
+        // Edit button click event handler
         private void editBtn_Click(object sender, EventArgs e)
         {
             state = TaskState.Changed;
 
         }
 
+        // MetroGrid cell click event handler
         private void metroGrid1_CellClick(object sender, DataGridViewCellEventArgs e)
         {            
             try
             {
-                 task = employeeTaskBindingSource.Current as EmployeeTask;
+                // Get the currently selected employee task
+                task = employeeTaskBindingSource.Current as EmployeeTask;
             }
             catch (Exception ex)
             {
@@ -64,19 +69,22 @@ namespace EmployeeTasksManagingApp
             }
         }
 
+        // Delete button click event handler
         private void deleteBtn_Click(object sender, EventArgs e)
         {
             state = TaskState.Deleted;
             if(MetroFramework.MetroMessageBox.Show(this, "Delete task?", "Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 try
-                {                    
+                {
+                    // Delete the selected employee task
                     task = employeeTaskBindingSource.Current as EmployeeTask;
                     if(task != null)
                     {
                        bool result = taskOperations.Delete(task.Id);
                         if(result)
                         {
+                            // Remove the task from the binding source and refresh the grid
                             employeeTaskBindingSource.RemoveCurrent();
                             grid.Refresh();
                             state = TaskState.Unchanged;
@@ -90,12 +98,13 @@ namespace EmployeeTasksManagingApp
             }           
         }
 
+        // Save button click event handler
         private void saveBtn_Click(object sender, EventArgs e)
         {
             try
             {
-                
-                employeeTaskBindingSource.EndEdit();
+                // End editing on the binding source and save the changes
+                employeeTaskBindingSource.EndEdit();              
                 task = employeeTaskBindingSource.Current as EmployeeTask;
                 if (task != null)
                 {                    

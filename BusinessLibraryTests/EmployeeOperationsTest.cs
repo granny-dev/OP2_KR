@@ -22,6 +22,7 @@ namespace BusinessLibraryTests
         [TestInitialize]
         public void Setup()
         {
+            // Setting up the mock objects and initializing the class under test
             mockDb = new Mock<IDbContext>();
             employeeOperations = new EmployeeOperations(mockDb.Object);
         }
@@ -34,6 +35,7 @@ namespace BusinessLibraryTests
             var expectedRole = "Developer";
             var emp = new Employee { Name = "John", Password = "password" };
 
+            // Setting up the mock behavior for the database context's ExecuteScalar method
             mockDb.Setup(x => x.ExecuteScalar<string>(It.IsAny<string>(), It.IsAny<object>()))
                 .Returns(expectedRole);
 
@@ -42,6 +44,8 @@ namespace BusinessLibraryTests
 
             // Assert
             Assert.AreEqual(expectedRole, actualRole);
+
+            // Verifying that the ExecuteScalar method was called exactly once
             mockDb.Verify(x => x.ExecuteScalar<string>(It.IsAny<string>(), It.IsAny<object>()), Times.Once);
         }
     }

@@ -22,6 +22,7 @@ namespace BusinessLibraryTests
         [TestInitialize]
         public void Setup()
         {
+            // Setting up the mock objects and initializing the class under test
             mockDb = new Mock<IDbContext>();
             employeeTaskOperations = new EmployeeTaskOperations(mockDb.Object);
         }
@@ -31,6 +32,8 @@ namespace BusinessLibraryTests
         {
             // Arrange
             int expectedId = 1;
+
+            // Setting up the mock behavior for the database context's ExecuteScalar method
             mockDb.Setup(
                 x => x.ExecuteScalar<int>(
                 It.Is<string>(sql => sql == "delete from dbo.TasksTable where Id = @id"),
@@ -50,6 +53,8 @@ namespace BusinessLibraryTests
         {
             //Arrange
             List<EmployeeTask> expectedTasks = new List<EmployeeTask> {  
+
+                 // Creating a list of expected tasks
                 new EmployeeTask
                 {
                     Title = "Create",
@@ -95,6 +100,7 @@ namespace BusinessLibraryTests
 
                 } };
 
+            // Setting up the mock behavior for the database context's ExecuteQuery method
             mockDb.Setup(x => x.ExecuteQuery<EmployeeTask>("select Id, Title, Status, Priority, Author, Executor, Estimate, Description from dbo.TasksTable", 
                 It.IsAny<object>()))
                 .Returns(expectedTasks);
@@ -121,6 +127,7 @@ namespace BusinessLibraryTests
                 Description = "Description"
             };
 
+            // Setting up the mock behavior for the database context's ExecuteProcedure method
             mockDb.Setup(x => x.ExecuteProcedure<int>("dbo.TasksTable_AddTask", It.IsAny<object>()))
                 .Returns(1);
 
@@ -147,6 +154,7 @@ namespace BusinessLibraryTests
                 Description = "Description"
             };
 
+            // Setting up the mock behavior for the database context's ExecuteProcedure method
             mockDb.Setup(x => x.ExecuteProcedure<int>("dbo.TasksTable_UpdateTask", It.IsAny<object>()))
                 .Returns(1);
 
@@ -174,6 +182,7 @@ namespace BusinessLibraryTests
             };
             TaskState state = TaskState.Added;
 
+            // Setting up the mock behavior for the database context's ExecuteProcedure method
             mockDb.Setup(x => x.ExecuteProcedure<int>("dbo.TasksTable_AddTask", It.IsAny<object>()))
                 .Returns(1);
 
@@ -201,6 +210,7 @@ namespace BusinessLibraryTests
             };
             TaskState state = TaskState.Changed;
 
+            // Setting up the mock behavior for the database context's ExecuteProcedure method
             mockDb.Setup(x => x.ExecuteProcedure<int>("dbo.TasksTable_UpdateTask", It.IsAny<object>()))
                 .Returns(1);
 
